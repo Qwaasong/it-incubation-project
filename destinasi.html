@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#1675c1" />
+    <meta
+      name="description"
+      content="Daftar destinasi wisata Malang: Gunung Bromo, Coban Rondo, Museum Angkut, dan Jatim Park 2."
+    />
+    <title>Destinasi Wisata Malang — Pesona Malang</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css"
+    />
+    <link rel="stylesheet" href="/css/global.css" />
+    <link rel="stylesheet" href="/css/site.css" />
+    <link rel="stylesheet" href="/css/destinasi.css" />
+    <script src="/js/site.js" defer></script>
+  </head>
+  <body class="page-header-light">
+    <a class="skip-link" href="#main">Lewati ke konten utama</a>
+
+    <header class="site-header" id="top">
+      <div class="nav-wrap">
+        <a class="brand" href="/beranda.html" aria-label="Kunjungi Malang, beranda">
+          <span class="brand-mark" aria-hidden="true">
+            <img class="brand-logo-inverse" src="/aset/Logo/logo-inverse.png" alt="" />
+            <img class="brand-logo" src="/aset/Logo/logo.png" alt="" />
+          </span>
+          <span class="brand-name">Eksplore Malang Yuk</span>
+        </a>
+
+        <nav class="primary-nav" id="primary-nav" aria-label="Navigasi utama">
+          <a href="/destinasi.html" aria-current="page">Destinasi</a>
+          <a href="/tiket.html">Tiket</a>
+          <a href="/beranda.html#about">Tentang</a>
+          <a href="/review.html">Review</a>
+        </nav>
+
+        <div class="nav-tools">
+          <button
+            class="search-toggle"
+            id="search-toggle"
+            type="button"
+            aria-label="Cari destinasi"
+            aria-expanded="false"
+            aria-controls="site-search"
+          >
+            <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
+          </button>
+        </div>
+
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-label="Buka menu navigasi"
+          aria-expanded="false"
+          aria-controls="primary-nav"
+        >
+          <i class="ph ph-list" aria-hidden="true"></i>
+        </button>
+      </div>
+
+      <div class="nav-search" id="site-search" hidden>
+        <form class="search-form" id="search-form" role="search">
+          <label class="search-label" for="search-input">Cari destinasi</label>
+          <div class="search-field">
+            <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
+            <input
+              class="search-input"
+              id="search-input"
+              type="search"
+              name="q"
+              autocomplete="off"
+              placeholder="Cari nama, lokasi, atau atraksi"
+            />
+            <button
+              class="search-clear"
+              id="search-clear"
+              type="button"
+              aria-label="Bersihkan pencarian"
+              hidden
+            >
+              <i class="ph ph-x" aria-hidden="true"></i>
+            </button>
+          </div>
+          <p
+            class="search-status"
+            id="search-status"
+            role="status"
+            aria-live="polite"
+          ></p>
+        </form>
+      </div>
+    </header>
+
+    <main id="main">
+      <section
+        class="page-intro page-width"
+        id="destinasi"
+        aria-labelledby="destinasi-title"
+      >
+        <p class="eyebrow">PILIHAN DESTINASI</p>
+        <div class="intro-grid">
+          <h1 id="destinasi-title">
+            Alam dan rekreasi,<br />satu <em>tempat untuk bersantainya.</em>
+          </h1>
+          <p class="intro-copy">
+            Jelajahi keindahan alam dan wisata non-alam di Malang. Pilih
+            destinasi favoritmu, lalu buka halaman tiket untuk melihat harga dan
+            jam kunjungan.
+          </p>
+        </div>
+      </section>
+
+      <!-- Destinasi Alam -->
+      <section class="destination-block" id="alam" aria-labelledby="alam-title">
+        <div class="page-width">
+          <div class="block-heading">
+            <div>
+              <p class="eyebrow">KATEGORI · 01</p>
+              <h2 id="alam-title">
+                <i class="ph ph-mountains" aria-hidden="true"></i> Destinasi
+                Alam
+              </h2>
+            </div>
+            <p class="section-summary">
+              Bentang alam pegunungan, kaldera, dan air sejuk yang mudah
+              dijangkau dari Kota Malang.
+            </p>
+          </div>
+
+          <div class="destination-list">
+            <article class="card">
+              <img
+                src="/aset/img/gunungbromo.png.jpeg"
+                alt="Pemandangan Gunung Bromo"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="card-content">
+                <div class="card-location">
+                  <i class="ph ph-map-pin" aria-hidden="true"></i> Taman
+                  Nasional Bromo Tengger Semeru
+                </div>
+                <h3>Gunung Bromo</h3>
+                <p>
+                  Gunung Bromo merupakan salah satu destinasi wisata alam
+                  terkenal di Jawa Timur dengan pemandangan matahari terbit yang
+                  indah.
+                </p>
+                <button type="button" onclick="tampilkanInfo('bromo')">
+                  Lihat Info
+                </button>
+              </div>
+            </article>
+
+            <article class="card">
+              <img
+                src="/aset/img/Cobanrondo.png.jpeg"
+                alt="Air Terjun Coban Rondo"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="card-content">
+                <div class="card-location">
+                  <i class="ph ph-map-pin" aria-hidden="true"></i> Pujon ·
+                  Kabupaten Malang
+                </div>
+                <h3>Air Terjun Coban Rondo</h3>
+                <p>
+                  Coban Rondo merupakan air terjun yang berada di kawasan
+                  pegunungan dengan suasana yang sejuk dan pemandangan yang
+                  asri.
+                </p>
+                <button type="button" onclick="tampilkanInfo('coban')">
+                  Lihat Info
+                </button>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Destinasi Non Alam -->
+      <section
+        class="destination-block"
+        id="non-alam"
+        aria-labelledby="non-alam-title"
+      >
+        <div class="page-width">
+          <div class="block-heading">
+            <div>
+              <p class="eyebrow">KATEGORI · 02</p>
+              <h2 id="non-alam-title">
+                <i class="ph ph-buildings" aria-hidden="true"></i> Destinasi
+                Non-Alam
+              </h2>
+            </div>
+            <p class="section-summary">
+              Koleksi, taman satwa, dan area tematik yang nyaman untuk kunjungan
+              keluarga.
+            </p>
+          </div>
+
+          <div class="destination-list">
+            <article class="card">
+              <img
+                src="/aset/img/museumangkut.png.jpeg"
+                alt="Koleksi kendaraan Museum Angkut"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="card-content">
+                <div class="card-location">
+                  <i class="ph ph-map-pin" aria-hidden="true"></i> Kota Wisata
+                  Batu
+                </div>
+                <h3>Museum Angkut</h3>
+                <p>
+                  Museum Angkut merupakan tempat wisata yang menampilkan
+                  berbagai koleksi kendaraan dari berbagai zaman dan negara.
+                </p>
+                <button type="button" onclick="tampilkanInfo('museum')">
+                  Lihat Info
+                </button>
+              </div>
+            </article>
+
+            <article class="card">
+              <img
+                src="/aset/img/jatimpark2.png.jpeg"
+                alt="Area satwa Jatim Park 2"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="card-content">
+                <div class="card-location">
+                  <i class="ph ph-map-pin" aria-hidden="true"></i> Oro-Oro Ombo
+                  · Kota Batu
+                </div>
+                <h3>Jatim Park 2</h3>
+                <p>
+                  Jatim Park 2 merupakan tempat wisata edukasi yang memiliki
+                  Museum Satwa dan Batu Secret Zoo.
+                </p>
+                <button type="button" onclick="tampilkanInfo('jatimpark')">
+                  Lihat Info
+                </button>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Kotak informasi -->
+      <div id="info" class="info-box" aria-live="polite">
+        <p class="eyebrow">INFORMASI DESTINASI</p>
+        <h2>Informasi Destinasi</h2>
+        <p id="isiInfo">
+          Klik tombol "Lihat Info" untuk melihat informasi destinasi.
+        </p>
+      </div>
+    </main>
+
+    <footer class="site-footer" id="informasi">
+      <div class="footer-grid">
+        <div>
+          <a
+            class="footer-wordmark"
+            href="#top"
+            aria-label="Pesona Malang, kembali ke atas"
+          >
+            <img
+              src="/aset/Logo/logo.png"
+              alt="Logo Pesona Malang"
+              loading="lazy"
+              decoding="async"
+            />
+          </a>
+          <p class="footer-note">
+            Catatan kecil untuk perjalanan besar di Malang Raya, Jawa Timur.
+          </p>
+        </div>
+
+        <nav aria-labelledby="footer-web-title">
+          <h2 class="footer-title" id="footer-web-title">Situs web kami</h2>
+          <ul class="footer-list">
+            <li><a href="/destinasi.html">Destinasi &amp; harga tiket</a></li>
+            <li><a href="/tiket.html#panduan">Panduan kunjungan</a></li>
+            <li><a href="/beranda.html#about">Tentang Malang Raya</a></li>
+          </ul>
+        </nav>
+
+        <nav aria-labelledby="footer-info-title">
+          <h2 class="footer-title" id="footer-info-title">Informasi</h2>
+          <ul class="footer-list">
+            <li><a href="/destinasi.html">Destinasi</a></li>
+            <li><a href="/tiket.html">Tiket</a></li>
+            <li><a href="/beranda.html#about">Tentang</a></li>
+            <li><a href="/review.html">Review</a></li>
+          </ul>
+        </nav>
+
+        <div>
+          <h2 class="footer-title">Kelompok 1</h2>
+          <ul class="social-list">
+            <li><a>Sheila</a></li>
+            <li><a>Zhorif</a></li>
+            <li><a>Raissa</a></li>
+            <li><a>Zaky</a></li>
+            <li><a>Zakiyya</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 Pesona Malang</span>
+        <span>Informasi wisata · Bukan layanan pemesanan tiket</span>
+        <a class="back-top" href="#top"
+          >Kembali ke atas
+          <i class="ph ph-arrow-up-right" aria-hidden="true"></i
+        ></a>
+      </div>
+    </footer>
+
+    <a
+      class="back-to-top"
+      id="back-to-top"
+      href="#top"
+      aria-label="Kembali ke atas"
+      aria-hidden="true"
+      tabindex="-1"
+    >
+      <i class="ph ph-arrow-up" aria-hidden="true"></i>
+    </a>
+
+    <script src="/js/destinasi.js"></script>
+  </body>
+</html>

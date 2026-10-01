@@ -1,0 +1,63 @@
+/* Destinasi page. Theme tokens live in global.css; navbar and footer live in
+   site.css. Page rules consume global tokens and never define new brand hues. */
+
+body { background: var(--brand-primary-soft); color: var(--ink); font-family: var(--display); }
+
+.page-intro { background: var(--white); }
+
+.destination-block { padding: 78px 0; background: var(--white); }
+.destination-block:nth-of-type(even) { background: var(--brand-primary-soft); }
+
+.block-heading { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 40px; }
+.block-heading .eyebrow { margin-bottom: 14px; }
+.block-heading h2 { display: flex; align-items: center; gap: 14px; margin: 0; color: var(--brand-primary-dark); font: 500 clamp(30px, 4vw, 46px)/1.15 var(--display); letter-spacing: -.03em; }
+.block-heading h2 i { color: var(--brand-primary); font-size: .58em; }
+.block-heading .section-summary { max-width: 350px; margin: 0 0 6px; color: var(--ink-soft); font: 400 13px/1.8 var(--sans); }
+
+.destination-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 26px; align-items: start; }
+
+.card {
+  overflow: hidden; background: var(--white); border: 1px solid var(--line);
+  border-radius: 15px; box-shadow: 0 8px 22px rgb(6 42 77 / 8%); transition: 0.3s;
+}
+.card:hover { transform: translateY(-6px); box-shadow: 0 14px 30px rgb(6 42 77 / 14%); }
+.card img { width: 100%; height: 230px; object-fit: cover; }
+
+.card-content { padding: 22px; }
+.card-location { display: flex; align-items: center; gap: 6px; color: var(--muted); font: 600 10px/1.5 var(--sans); }
+.card-location i { font-size: 14px; }
+.card-content h3 { margin: 9px 0 10px; color: var(--brand-primary-dark); font: 500 26px/1.2 var(--display); letter-spacing: -.02em; }
+.card-content p { margin: 0 0 18px; color: var(--ink-soft); font: 400 14px/1.8 var(--sans); }
+
+.card-content button {
+  display: inline-flex; align-items: center; gap: 8px; padding: 11px 20px;
+  border: 0; border-radius: 8px; background: var(--brand-primary); color: var(--white);
+  font: 600 12px var(--sans); cursor: pointer; transition: background-color .2s ease;
+}
+.card-content button:hover { background: var(--brand-primary-strong); }
+
+.info-box {
+  max-width: 780px; margin: 0 auto; padding: 40px 32px;
+  background: var(--white); border: 1px solid var(--line); border-radius: 15px;
+  text-align: center; box-shadow: 0 10px 26px rgb(6 42 77 / 10%);
+}
+.info-box .eyebrow { margin-bottom: 12px; }
+.info-box h2 { margin: 0 0 12px; color: var(--brand-primary-dark); font: 500 clamp(26px, 3.4vw, 36px)/1.2 var(--display); letter-spacing: -.02em; }
+.info-box p { margin: 0; color: var(--ink-soft); font: 400 14px/1.85 var(--sans); }
+
+@media (max-width: 850px) {
+  .destination-block { padding: 62px 0; }
+  .block-heading { align-items: start; flex-direction: column; gap: 14px; }
+  .block-heading .section-summary { max-width: 100%; }
+  .destination-list { gap: 20px; }
+  .card img { height: 210px; }
+  .info-box { margin: 0 20px; padding: 32px 24px; }
+}
+@media (max-width: 600px) {
+  .destination-block { padding: 50px 0; }
+  .block-heading { margin-bottom: 28px; }
+  .card img { height: 200px; }
+  .card-content h3 { font-size: 23px; }
+  .card-content p { font-size: 13px; }
+  .info-box p { font-size: 13px; }
+}

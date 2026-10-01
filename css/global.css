@@ -1,0 +1,144 @@
+/* ==========================================================================
+   global.css — shared foundation for every page.
+
+   Loaded FIRST on all pages, before site.css (navbar/footer) and the
+   page-specific stylesheet. Owns:
+
+     1. Theme tokens — the single source of colour truth.
+        Primary is blue. Pages must not define their own brand hues.
+     2. The two project fonts (Playfair Display + Manrope) and the usage
+        split: Manrope carries interface and body copy, Playfair Display
+        carries display type only.
+     3. Global resets and cross-cutting utilities.
+     4. Global interactive behaviour styling (back-to-top button).
+
+   Palette note: --rating is the one deliberate exception to "everything is
+   blue". Star ratings keep an amber hue because that colour carries a
+   recognised meaning to users; it is not a brand surface.
+   ========================================================================== */
+
+:root {
+  color-scheme: light;
+
+  /* Brand — primary is blue */
+  --brand-primary: #1675c1;
+  --brand-primary-strong: #0f5c99;
+  --brand-primary-dark: #062a4d;
+  --brand-primary-darker: #041c36;
+  --brand-primary-soft: #eaf5ff;
+
+  /* Accents used on top of dark brand surfaces (hero, footer) */
+  --brand-accent: #7cc4f5;
+  --brand-accent-soft: #cfe6fb;
+
+  /* Semantic rating colour — intentionally not blue */
+  --rating: #f0a500;
+
+  /* Neutrals */
+  --ink: #111827;
+  --ink-soft: #4b5563;
+  --muted: #6b7280;
+  --muted-light: #9ca3af;
+  --line: #e5e7eb;
+  --line-strong: #d1d5db;
+  --surface: #f3f4f6;
+  --paper: #f9fafb;
+  --white: #ffffff;
+
+  /* Typography */
+  --display: 'Playfair Display', Georgia, serif;
+  --sans: 'Manrope', Arial, sans-serif;
+
+  /* Chrome metrics */
+  --nav-h: 88px;
+  --nav-pad: 24px;
+  --nav-veil: rgb(6 42 77 / 82%);
+  --nav-surface: rgb(255 255 255 / 95%);
+  --nav-blur: blur(12px);
+  --nav-shadow: 0 1px 0 var(--line), 0 12px 28px rgb(6 42 77 / 10%);
+  --nav-edge: rgb(255 255 255 / 16%);
+  --nav-edge-scrolled: var(--line);
+  --footer-pad: 24px;
+}
+
+/* RESET */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-h) + 18px); }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--display);
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+button { color: inherit; font: inherit; }
+
+:focus-visible { outline: 3px solid var(--brand-primary); outline-offset: 3px; }
+
+/* UTILITIES */
+[hidden] { display: none !important; }
+.is-filtered-out { display: none !important; }
+
+.page-width { width: min(1240px, calc(100% - 64px)); margin-inline: auto; }
+
+.skip-link { position: fixed; z-index: 20; top: 12px; left: 12px; padding: 10px 16px; transform: translateY(-160%); background: var(--white); color: var(--ink); font: 600 14px var(--sans); }
+.skip-link:focus { transform: translateY(0); }
+
+.eyebrow { margin: 0; color: var(--brand-primary); font: 700 10px/1.4 var(--sans); letter-spacing: .19em; }
+
+/* SHARED PAGE INTRO — the block every inner page opens with, so all four
+   pages share one heading rhythm and one container width. */
+.page-intro { padding-top: calc(var(--nav-h) + 78px); padding-bottom: 68px; }
+.page-intro .eyebrow { margin-bottom: 20px; }
+.page-intro .intro-grid { display: grid; grid-template-columns: 1.05fr .95fr; align-items: end; gap: 8%; }
+.page-intro h1 { max-width: 660px; margin: 0; color: var(--brand-primary-dark); font: 500 clamp(38px, 5.2vw, 66px)/1.08 var(--display); letter-spacing: -.035em; }
+.page-intro h1 em { color: var(--brand-primary); font-style: italic; }
+.page-intro .intro-copy { max-width: 470px; margin: 0 0 6px; color: var(--ink-soft); font: 400 15px/1.9 var(--sans); }
+
+/* BACK TO TOP — global floating control, present on every page */
+.back-to-top {
+  position: fixed;
+  right: clamp(16px, 3vw, 30px);
+  bottom: clamp(16px, 3vw, 30px);
+  z-index: 30;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  background: var(--brand-primary);
+  color: var(--white);
+  text-decoration: none;
+  box-shadow: 0 6px 18px rgb(6 42 77 / 26%);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity .2s ease, transform .2s ease, visibility .2s ease, background-color .2s ease, border-color .2s ease;
+}
+.back-to-top.is-visible { opacity: 1; visibility: visible; transform: none; }
+.back-to-top:hover { background: var(--brand-primary-strong); border-color: var(--brand-primary-strong); }
+.back-to-top i { font-size: 20px; }
+
+@media (max-width: 850px) {
+  :root { --nav-pad: 22px; }
+  .page-width { width: min(100% - 44px, 720px); }
+  .page-intro { padding-top: calc(var(--nav-h) + 54px); padding-bottom: 54px; }
+  .page-intro .intro-grid { grid-template-columns: 1fr; gap: 20px; }
+  .page-intro .intro-copy { max-width: 100%; }
+}
+@media (max-width: 600px) {
+  :root { --nav-pad: 18px; }
+  .page-width { width: calc(100% - 36px); }
+  .page-intro h1 { font-size: 36px; }
+  .page-intro .intro-copy { font-size: 13px; }
+  .back-to-top { width: 42px; height: 42px; }
+  .back-to-top i { font-size: 18px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}

@@ -1,0 +1,63 @@
+/* Review page. Theme tokens live in global.css; navbar and footer live in site.css.
+   Page rules consume global tokens and never define new brand hues. */
+
+body { font-family: var(--display); background: var(--surface); color: var(--ink); }
+
+.review-section { padding: 0 20px 90px; max-width: 1100px; margin: auto; }
+.review-heading { text-align: center; margin-bottom: 46px; }
+.review-heading h2 { margin: 0; color: var(--brand-primary-dark); font: 500 clamp(28px, 4vw, 44px)/1.15 var(--display); letter-spacing: -.03em; }
+.review-heading h2 i { color: var(--rating); font-size: .62em; vertical-align: .28em; }
+.subtitle { text-align: center; color: var(--muted); margin: 14px 0 0; font: 400 14px/1.8 var(--sans); }
+
+.review-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.review-card {
+  background: var(--white); border-radius: 15px; overflow: hidden;
+  box-shadow: 0 5px 15px rgb(6 42 77 / 8%); transition: 0.3s;
+}
+.review-card:hover { transform: translateY(-5px); }
+.review-card img { width: 100%; height: 180px; object-fit: cover; }
+.content { padding: 15px; }
+.content h3 { margin: 5px 0; color: var(--brand-primary-dark); font: 500 24px/1.2 var(--display); }
+.stars { display: flex; align-items: center; gap: 2px; color: var(--rating); margin: 5px 0; font-size: 14px; }
+.stars span { color: var(--ink); font: 700 12px var(--sans); margin-left: 5px; }
+.content p { font: italic 400 14px/1.8 var(--sans); color: var(--ink-soft); margin: 12px 0 0; }
+.user { margin-top: 12px; font: 700 12px var(--sans); letter-spacing: .04em; color: var(--brand-primary-dark); }
+
+.form-review {
+  margin-top: 56px; background: var(--white); padding: 28px;
+  border-radius: 15px; box-shadow: 0 5px 15px rgb(6 42 77 / 8%);
+}
+.form-review h3 { margin: 0 0 4px; color: var(--brand-primary-dark); font: 500 28px/1.2 var(--display); }
+.form-review input, .form-review select, .form-review textarea {
+  width: 100%; padding: 12px; margin: 10px 0; border-radius: 8px;
+  border: 1px solid var(--line-strong); background: var(--white); color: var(--ink);
+  font: 400 14px/1.6 var(--sans);
+}
+.form-review textarea { min-height: 120px; resize: vertical; }
+.form-review input:focus-visible,
+.form-review select:focus-visible,
+.form-review textarea:focus-visible { border-color: var(--brand-primary); }
+.form-review button {
+  background: var(--brand-primary); color: var(--white); border: none;
+  padding: 13px 20px; margin-top: 6px; border-radius: 8px; cursor: pointer;
+  width: 100%; font: 700 13px var(--sans);
+  transition: background-color .2s ease;
+}
+.form-review button:hover { background: var(--brand-primary-strong); }
+
+@media (max-width: 850px) {
+  .review-section { padding-bottom: 70px; }
+  .form-review { padding: 22px; }
+}
+@media (max-width: 600px) {
+  .review-heading { margin-bottom: 32px; }
+  .review-heading h2 { font-size: 28px; }
+  .subtitle { font-size: 13px; }
+  .content h3 { font-size: 21px; }
+  .content p { font-size: 13px; }
+}
