@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="id">
   <head>
     <meta charset="utf-8" />
@@ -9,6 +9,24 @@
       content="Panduan informasi harga tiket dan tips berkunjung ke Gunung Bromo, Coban Rondo, Museum Angkut, dan Jatim Park 2."
     />
     <title>Tiket Wisata Malang — Pesona Malang</title>
+
+    <script>
+      (() => {
+        let saved = null;
+        try {
+          saved = localStorage.getItem("pesona-malang-theme");
+        } catch (error) {
+          saved = null;
+        }
+        if (saved !== "light" && saved !== "dark") {
+          saved = window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
+        }
+        document.documentElement.dataset.theme = saved;
+      })();
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -19,19 +37,33 @@
       rel="stylesheet"
       href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css"
     />
+    <link rel="icon" href="/it-incubation-project/aset/favicon.ico" sizes="any" />
+    <link rel="icon" href="/it-incubation-project/aset/favicon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="/it-incubation-project/aset/apple-touch-icon.png" />
+    <!-- Aset global dimuat lebih dahulu; CSS berikut hanya untuk halaman ini. -->
     <link rel="stylesheet" href="/it-incubation-project/css/global.css" />
     <link rel="stylesheet" href="/it-incubation-project/css/site.css" />
+    <link rel="stylesheet" href="/it-incubation-project/css/page.css" />
     <link rel="stylesheet" href="/it-incubation-project/css/tiket.css" />
     <script src="/it-incubation-project/js/site.js" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Lewati ke konten utama</a>
 
+    <!-- Navbar global: identitas, tautan halaman, tema, menu mobile, dan pencarian. -->
     <header class="site-header" id="top">
       <div class="nav-wrap">
-        <a class="brand" href="/it-incubation-project/index.html" aria-label="Kunjungi Malang, beranda">
+        <a
+          class="brand"
+          href="/it-incubation-project/index.html"
+          aria-label="Kunjungi Malang, beranda"
+        >
           <span class="brand-mark" aria-hidden="true">
-            <img class="brand-logo-inverse" src="/it-incubation-project/aset/Logo/logo-inverse.png" alt="" />
+            <img
+              class="brand-logo-inverse"
+              src="/it-incubation-project/aset/Logo/logo-inverse.png"
+              alt=""
+            />
             <img class="brand-logo" src="/it-incubation-project/aset/Logo/logo.png" alt="" />
           </span>
           <span class="brand-name">Eksplore Malang Yuk</span>
@@ -40,7 +72,7 @@
         <nav class="primary-nav" id="primary-nav" aria-label="Navigasi utama">
           <a href="/it-incubation-project/destinasi.html">Destinasi</a>
           <a href="/it-incubation-project/tiket.html" aria-current="page">Tiket</a>
-          <a href="/it-incubation-project/beranda.html#about">Tentang</a>
+          <a href="/it-incubation-project/tentang.html">Tentang</a>
           <a href="/it-incubation-project/review.html">Review</a>
         </nav>
 
@@ -49,11 +81,30 @@
             class="search-toggle"
             id="search-toggle"
             type="button"
-            aria-label="Cari destinasi"
+            aria-label="Sorot destinasi di halaman ini"
             aria-expanded="false"
             aria-controls="site-search"
           >
             <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
+          </button>
+
+          <button
+            class="theme-toggle"
+            id="theme-toggle"
+            type="button"
+            aria-label="Ganti tema"
+            aria-pressed="false"
+          >
+            <i
+              class="ph ph-moon"
+              data-theme-icon="moon"
+              aria-hidden="true"
+            ></i>
+            <i
+              class="ph ph-sun"
+              data-theme-icon="sun"
+              aria-hidden="true"
+            ></i>
           </button>
         </div>
 
@@ -68,9 +119,10 @@
         </button>
       </div>
 
+      <!-- Panel pencarian global: difilter oleh js/site.js dan menyoroti hasil di kartu. -->
       <div class="nav-search" id="site-search" hidden>
         <form class="search-form" id="search-form" role="search">
-          <label class="search-label" for="search-input">Cari destinasi</label>
+          <label class="search-label" for="search-input">Sorot Destinasi</label>
           <div class="search-field">
             <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
             <input
@@ -79,13 +131,13 @@
               type="search"
               name="q"
               autocomplete="off"
-              placeholder="Cari nama, lokasi, atau atraksi"
+              placeholder="Ketik nama, lokasi, atau atraksi"
             />
             <button
               class="search-clear"
               id="search-clear"
               type="button"
-              aria-label="Bersihkan pencarian"
+              aria-label="Hapus kata kunci"
               hidden
             >
               <i class="ph ph-x" aria-hidden="true"></i>
@@ -105,7 +157,7 @@
       <section class="hero" aria-labelledby="hero-title">
         <img
           class="hero-image"
-          src="/it-incubation-project/aset/img/bromo.webp"
+          src="/it-incubation-project/aset/img/coban-rondo.webp"
           width="2400"
           height="1599"
           alt="Panorama kaldera dan pegunungan Bromo saat cahaya pagi."
@@ -117,7 +169,7 @@
           <h1 id="hero-title">Tiket Wisata</h1>
         </div>
         <div class="hero-caption">
-          <span>01 — 04</span><span>CATATAN PERJALANAN · MALANG RAYA</span>
+          <span>01 — 02</span><span>CATATAN PERJALANAN · MALANG RAYA</span>
         </div>
       </section>
 
@@ -611,6 +663,7 @@
       </section>
     </main>
 
+    <!-- Footer global: tautan informasi, sosial, dan kontrol kembali ke atas. -->
     <footer class="site-footer" id="informasi">
       <div class="footer-grid">
         <div>
@@ -634,9 +687,8 @@
         <nav aria-labelledby="footer-web-title">
           <h2 class="footer-title" id="footer-web-title">Situs web kami</h2>
           <ul class="footer-list">
-            <li><a href="#destinasi">Destinasi &amp; harga tiket</a></li>
-            <li><a href="#panduan">Panduan kunjungan</a></li>
-            <li><a href="#tentang">Tentang Malang Raya</a></li>
+            <li><a href="/it-incubation-project/destinasi.html">Destinasi</a></li>
+            <li><a href="/it-incubation-project/tentang.html">Tentang Malang Raya</a></li>
           </ul>
         </nav>
 
@@ -645,7 +697,7 @@
           <ul class="footer-list">
             <li><a href="/it-incubation-project/destinasi.html">Destinasi</a></li>
             <li><a href="/it-incubation-project/tiket.html">Tiket</a></li>
-            <li><a href="/it-incubation-project/beranda.html#about">Tentang</a></li>
+            <li><a href="/it-incubation-project/tentang.html">Tentang</a></li>
             <li><a href="/it-incubation-project/review.html">Review</a></li>
           </ul>
         </nav>
@@ -665,10 +717,6 @@
       <div class="footer-bottom">
         <span>© 2026 Pesona Malang</span>
         <span>Informasi wisata · Bukan layanan pemesanan tiket</span>
-        <a class="back-top" href="#top"
-          >Kembali ke atas
-          <i class="ph ph-arrow-up-right" aria-hidden="true"></i
-        ></a>
       </div>
     </footer>
 

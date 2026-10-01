@@ -1,12 +1,35 @@
-const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+/* Fitur lokal beranda: slider hero, video latar, dan animasi scroll reveal. */
+const prefersReducedMotion = window.matchMedia(
+  "(prefers-reduced-motion: reduce)",
+);
 
-// HERO SLIDER
+// Slider hero: mengganti gambar utama secara berkala dan melalui indikator.
 const slides = document.querySelectorAll(".hero-slide");
 const indicators = document.querySelectorAll(".indicator");
 const heroCounter = document.getElementById("heroCounter");
+const hero = document.getElementById("home");
+const heroVideo = document.getElementById("heroVideo");
+const videoSlide = heroVideo ? heroVideo.closest(".hero-slide") : null;
 
 let currentSlide = 0;
 let sliderInterval;
+let heroVisible = true;
+
+// Video hanya diputar ketika slide-nya aktif dan hero sedang terlihat.
+function syncHeroVideo() {
+  if (!heroVideo || !videoSlide) return;
+
+  const shouldPlay =
+    !prefersReducedMotion.matches &&
+    heroVisible &&
+    videoSlide.classList.contains("active");
+
+  if (shouldPlay) {
+    heroVideo.play().catch(() => {});
+  } else {
+    heroVideo.pause();
+  }
+}
 
 function showSlide(index) {
   slides.forEach((slide) => slide.classList.remove("active"));
@@ -18,6 +41,8 @@ function showSlide(index) {
   heroCounter.textContent = `0${index + 1} / 0${slides.length}`;
 
   currentSlide = index;
+
+  syncHeroVideo();
 }
 
 function nextSlide() {
@@ -37,51 +62,24 @@ indicators.forEach((dot, index) => {
   });
 });
 
-startSlider();
+// Hentikan video saat hero di luar area pandang agar tidak berjalan sia-sia.
+if (hero && heroVideo) {
+  const heroObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        heroVisible = entry.isIntersecting;
+      });
+      syncHeroVideo();
+    },
+    { threshold: 0.15 },
+  );
 
-// SEARCH DESTINATION
-const searchInput = document.getElementById("searchInput");
-const categorySelect = document.getElementById("categorySelect");
-const searchButton = document.getElementById("searchButton");
-
-const cards = document.querySelectorAll(".destination-card");
-const noResult = document.getElementById("noResult");
-
-function filterDestinations() {
-  const keyword = searchInput.value.toLowerCase().trim();
-  const category = categorySelect.value;
-
-  let found = 0;
-
-  cards.forEach((card) => {
-    const name = card.dataset.name;
-    const cardCategory = card.dataset.category;
-
-    const matchName = name.includes(keyword);
-    const matchCategory = category === "all" || cardCategory === category;
-
-    card.classList.toggle("is-filtered-out", !(matchName && matchCategory));
-    if (matchName && matchCategory) found++;
-  });
-
-  noResult.hidden = found !== 0;
-
-document.getElementById("destinasi").scrollIntoView({
-      behavior: prefersReducedMotion.matches ? "auto" : "smooth",
-    });
+  heroObserver.observe(hero);
 }
 
-searchButton.addEventListener("click", filterDestinations);
+startSlider();
 
-searchInput.addEventListener("keydown", (event) => {
-  if (event.key === "Enter") {
-    filterDestinations();
-  }
-});
-
-categorySelect.addEventListener("change", filterDestinations);
-
-// SCROLL REVEAL ANIMATION
+// Animasi reveal: menampilkan komponen ketika masuk ke area pandang.
 const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
@@ -98,15 +96,4 @@ const observer = new IntersectionObserver(
 
 document.querySelectorAll(".reveal").forEach((element) => {
   observer.observe(element);
-});
-
-// Tema
-const themeToggle = document.getElementById("themeToggle");
-
-themeToggle.addEventListener("click", function () {
-  document.body.classList.toggle("dark-mode");
-
-  const isDark = document.body.classList.contains("dark-mode");
-  themeToggle.querySelector("i").className = isDark ? "ph ph-sun" : "ph ph-moon";
-  themeToggle.setAttribute("aria-label", isDark ? "Aktifkan tema terang" : "Aktifkan tema gelap");
 });

@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#1675c1" />
+    <meta
+      name="description"
+      content="Kenali Kota Malang melalui sejarah, suasana kota pendidikan, kuliner, dan fakta wilayahnya."
+    />
+    <title>Tentang Kota Malang — Pesona Malang</title>
+
+    <script>
+      (() => {
+        let saved = null;
+        try {
+          saved = localStorage.getItem("pesona-malang-theme");
+        } catch (error) {
+          saved = null;
+        }
+        if (saved !== "light" && saved !== "dark") {
+          saved = window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
+        }
+        document.documentElement.dataset.theme = saved;
+      })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css"
+    />
+    <link rel="icon" href="/it-incubation-project/aset/favicon.ico" sizes="any" />
+    <link rel="icon" href="/it-incubation-project/aset/favicon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="/it-incubation-project/aset/apple-touch-icon.png" />
+    <!-- Aset global dimuat lebih dahulu; CSS berikut hanya untuk halaman ini. -->
+    <link rel="stylesheet" href="/it-incubation-project/css/global.css" />
+    <link rel="stylesheet" href="/it-incubation-project/css/site.css" />
+    <!-- Struktur section halaman dalam (hero, intro, kartu, sumber) dipakai bersama tiket.html. -->
+    <link rel="stylesheet" href="/it-incubation-project/css/page.css" />
+    <link rel="stylesheet" href="/it-incubation-project/css/tentang.css" />
+    <script src="/it-incubation-project/js/site.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Lewati ke konten utama</a>
+
+    <!-- Navbar global: identitas, tautan halaman, tema, menu mobile, dan pencarian. -->
+    <header class="site-header" id="top">
+      <div class="nav-wrap">
+        <a
+          class="brand"
+          href="/it-incubation-project/index.html"
+          aria-label="Kunjungi Malang, beranda"
+        >
+          <span class="brand-mark" aria-hidden="true">
+            <img
+              class="brand-logo-inverse"
+              src="/it-incubation-project/aset/Logo/logo-inverse.png"
+              alt=""
+            />
+            <img class="brand-logo" src="/it-incubation-project/aset/Logo/logo.png" alt="" />
+          </span>
+          <span class="brand-name">Eksplore Malang Yuk</span>
+        </a>
+
+        <nav class="primary-nav" id="primary-nav" aria-label="Navigasi utama">
+          <a href="/it-incubation-project/destinasi.html">Destinasi</a>
+          <a href="/it-incubation-project/tiket.html">Tiket</a>
+          <a href="/it-incubation-project/tentang.html" aria-current="page">Tentang</a>
+          <a href="/it-incubation-project/review.html">Review</a>
+        </nav>
+
+        <div class="nav-tools">
+          <button
+            class="search-toggle"
+            id="search-toggle"
+            type="button"
+            aria-label="Sorot destinasi di halaman ini"
+            aria-expanded="false"
+            aria-controls="site-search"
+          >
+            <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
+          </button>
+
+          <button
+            class="theme-toggle"
+            id="theme-toggle"
+            type="button"
+            aria-label="Ganti tema"
+            aria-pressed="false"
+          >
+            <i
+              class="ph ph-moon"
+              data-theme-icon="moon"
+              aria-hidden="true"
+            ></i>
+            <i
+              class="ph ph-sun"
+              data-theme-icon="sun"
+              aria-hidden="true"
+            ></i>
+          </button>
+        </div>
+
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-label="Buka menu navigasi"
+          aria-expanded="false"
+          aria-controls="primary-nav"
+        >
+          <i class="ph ph-list" aria-hidden="true"></i>
+        </button>
+      </div>
+
+      <!-- Panel pencarian global: difilter oleh js/site.js dan menyoroti hasil di kartu. -->
+      <div class="nav-search" id="site-search" hidden>
+        <form class="search-form" id="search-form" role="search">
+          <label class="search-label" for="search-input">Sorot Destinasi</label>
+          <div class="search-field">
+            <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
+            <input
+              class="search-input"
+              id="search-input"
+              type="search"
+              name="q"
+              autocomplete="off"
+              placeholder="Ketik nama, lokasi, atau atraksi"
+            />
+            <button
+              class="search-clear"
+              id="search-clear"
+              type="button"
+              aria-label="Hapus kata kunci"
+              hidden
+            >
+              <i class="ph ph-x" aria-hidden="true"></i>
+            </button>
+          </div>
+          <p
+            class="search-status"
+            id="search-status"
+            role="status"
+            aria-live="polite"
+          ></p>
+        </form>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero" aria-labelledby="hero-title">
+        <img
+          class="hero-image"
+          src="/it-incubation-project/aset/img/tugu-malang.jpg"
+          width="1920"
+          height="1080"
+          alt="Pemandangan udara Alun-Alun Tugu dan Balai Kota Malang."
+          fetchpriority="high"
+          decoding="async"
+        />
+        <div class="hero-shade" aria-hidden="true"></div>
+        <div class="hero-content page-width">
+          <h1 id="hero-title">Tentang Malang</h1>
+        </div>
+        <div class="hero-caption">
+          <span>01 — 03</span><span>SEKILAS KOTA · JAWA TIMUR</span>
+        </div>
+      </section>
+
+      <section
+        class="intro page-width"
+        id="tentang"
+        aria-labelledby="intro-title"
+      >
+        <div class="intro-overline">
+          <span class="eyebrow">MENGENAL KOTA</span>
+          <span class="intro-dot" aria-hidden="true"></span>
+          <span class="eyebrow">MALANG RAYA, JAWA TIMUR</span>
+        </div>
+        <div class="intro-grid">
+          <h2 id="intro-title">
+            Kota yang tumbuh dari <em>banyak cerita.</em>
+          </h2>
+          <p class="intro-copy">
+            Di antara jalan rindang, bangunan bersejarah, dan sudut-sudut yang
+            selalu hidup, Kota Malang menghadirkan suasana yang akrab sekaligus
+            penuh hal baru untuk dijelajahi. Kota ini dikenal dengan jejak
+            sejarahnya, kehidupan pendidikan, serta kuliner yang lekat di hati.
+          </p>
+        </div>
+        <div class="mini-facts" aria-label="Fakta singkat Kota Malang">
+          <div>
+            <span class="fact-number">111,08</span
+            ><span class="fact-label">KM² LUAS WILAYAH</span>
+          </div>
+          <div>
+            <span class="fact-number">05</span
+            ><span class="fact-label">KECAMATAN</span>
+          </div>
+          <div>
+            <span class="fact-number">57</span
+            ><span class="fact-label">KELURAHAN</span>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="ticket-section"
+        id="cerita"
+        aria-labelledby="stories-title"
+      >
+        <div class="page-width">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow section-kicker">KOTA · CERITA · KEHIDUPAN</p>
+              <h2 id="stories-title">Wajah Malang <em>dari dekat.</em></h2>
+            </div>
+            <p class="section-summary">
+              Kenali perjalanan sejarah dan suasana keseharian yang membuat Kota
+              Malang punya karakter tersendiri.
+            </p>
+          </div>
+
+          <div class="destination-grid about-grid">
+            <article class="destination-card" data-searchable="true">
+              <div class="card-visual">
+                <img
+                  src="/it-incubation-project/aset/img/tugu-malang.jpg"
+                  width="1920"
+                  height="1080"
+                  alt="Alun-Alun Tugu dan Balai Kota Malang sebagai penanda kawasan pusat kota."
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span class="category-pill"
+                  ><i class="ph ph-buildings" aria-hidden="true"></i> WARISAN
+                  KOTA</span
+                >
+                <span class="card-index">01</span>
+              </div>
+              <div class="card-body">
+                <div class="card-location">
+                  <i class="ph ph-map-pin" aria-hidden="true"></i> PUSAT KOTA ·
+                  KLOJEN
+                </div>
+                <h3>Jejak sejarah di sudut jalan</h3>
+                <p class="card-description">
+                  Alun-Alun Tugu, Balai Kota, dan koridor Ijen menjadi bagian
+                  dari wajah lama Malang yang masih dapat dijumpai di tengah
+                  kota modern.
+                </p>
+                <div class="card-quickfacts">
+                  <span
+                    ><i class="ph ph-train" aria-hidden="true"></i> Kereta api
+                    beroperasi sejak 1879</span
+                  >
+                  <span
+                    ><i class="ph ph-calendar-blank" aria-hidden="true"></i>
+                    Kotapraja sejak 1 April 1914</span
+                  >
+                </div>
+                <details class="card-details">
+                  <summary>
+                    Lintasan sejarah
+                    <i class="ph ph-plus" aria-hidden="true"></i>
+                  </summary>
+                  <div class="details-content">
+                    <p>
+                      Catatan sejarah Pemerintah Kota Malang menyebut wilayah
+                      Dinoyo sebagai pusat kerajaan dengan Raja Gajayana.
+                      Perkembangan kota kemudian semakin pesat setelah jalur
+                      kereta api beroperasi pada 1879.
+                    </p>
+                    <p>
+                      Pada 1 April 1914, Malang ditetapkan sebagai Kotapraja.
+                      Kawasan Ijen dan bangunan lama di pusat kota menyimpan
+                      sebagian jejak perkembangan tersebut.
+                    </p>
+                    <a
+                      href="https://malangkota.go.id/sekilas-malang/sejarah-malang/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Baca sejarah resmi Kota Malang
+                      <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
+                    </a>
+                  </div>
+                </details>
+              </div>
+            </article>
+
+            <article class="destination-card" data-searchable="true">
+              <div class="card-visual">
+                <img
+                  src="/it-incubation-project/aset/img/malang-jalan.jpeg"
+                  width="2500"
+                  height="1406"
+                  alt="Suasana jalan di pusat Kota Malang dengan bangku-bangku di sepanjang trotoar."
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span class="category-pill"
+                  ><i class="ph ph-sparkle" aria-hidden="true"></i> SUASANA
+                  KOTA</span
+                >
+                <span class="card-index">02</span>
+              </div>
+              <div class="card-body">
+                <div class="card-location">
+                  <i class="ph ph-map-pin" aria-hidden="true"></i> KOTA MALANG ·
+                  JAWA TIMUR
+                </div>
+                <h3>Ruang tumbuh yang beragam</h3>
+                <p class="card-description">
+                  Sebagai kota pendidikan dan bagian penting Malang Raya, Malang
+                  mempertemukan warga, mahasiswa, komunitas kreatif, dan
+                  pengunjung dari berbagai daerah.
+                </p>
+                <div class="card-quickfacts">
+                  <span
+                    ><i class="ph ph-graduation-cap" aria-hidden="true"></i>
+                    Lebih dari 60 perguruan tinggi</span
+                  >
+                  <span
+                    ><i class="ph ph-bowl-food" aria-hidden="true"></i> Kuliner
+                    khas: Bakso Malang</span
+                  >
+                </div>
+                <details class="card-details">
+                  <summary>
+                    Kenali suasana Malang
+                    <i class="ph ph-plus" aria-hidden="true"></i>
+                  </summary>
+                  <div class="details-content">
+                    <p>
+                      Kehadiran perguruan tinggi membuat suasana kota terasa
+                      dinamis dan beragam. Di sela aktivitas kota, kuliner
+                      seperti Bakso Malang menjadi salah satu cita rasa yang
+                      lekat dengan keseharian.
+                    </p>
+                    <p>
+                      Informasi profil resmi Pemerintah Kota Malang mencatat
+                      lebih dari 60 perguruan tinggi di kota ini.
+                    </p>
+                    <a
+                      href="https://malangkota.go.id/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Lihat profil Pemerintah Kota Malang
+                      <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
+                    </a>
+                  </div>
+                </details>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <aside class="visit-note page-width" aria-labelledby="note-title">
+        <span class="note-icon" aria-hidden="true"
+          ><i class="ph ph-compass"></i
+        ></span>
+        <div>
+          <p class="eyebrow">CATATAN PERJALANAN</p>
+          <h2 id="note-title">Kota Malang bukan seluruh Malang Raya.</h2>
+          <p>
+            Kota Malang, Kabupaten Malang, dan Kota Batu adalah wilayah
+            administratif yang berbeda. Beberapa tempat populer yang sering
+            disebut “wisata Malang”, seperti Gunung Bromo dan Jatim Park, berada
+            di luar Kota Malang. Periksa lokasi destinasi sebelum menyusun rute
+            perjalanan.
+          </p>
+        </div>
+        <span class="note-stamp">MALANG<br />JAWA TIMUR</span>
+      </aside>
+
+      <section class="sources page-width" aria-labelledby="sources-title">
+        <div class="sources-heading">
+          <div>
+            <p class="eyebrow">RUJUKAN &amp; KREDIT FOTO</p>
+            <h2 id="sources-title">Sumber <em>informasi.</em></h2>
+          </div>
+          <p>
+            Informasi wilayah dan sejarah dirujuk dari sumber resmi Pemerintah
+            Kota Malang.
+          </p>
+        </div>
+        <div class="source-list">
+          <a
+            href="https://malangkota.go.id/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>01</span
+            ><span
+              >Portal resmi Pemerintah Kota Malang · profil dan statistik
+              wilayah</span
+            ><i class="ph ph-arrow-up-right" aria-hidden="true"></i>
+          </a>
+          <a
+            href="https://malangkota.go.id/sekilas-malang/sejarah-malang/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>02</span
+            ><span>Pemerintah Kota Malang · sejarah Kota Malang</span
+            ><i class="ph ph-arrow-up-right" aria-hidden="true"></i>
+          </a>
+          <a
+            href="https://www.agoda.com/travel-guides/indonesia/malang/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>03</span
+            ><span
+              >Agoda Travel Guides · foto Alun-Alun Tugu dan Balai Kota</span
+            ><i class="ph ph-arrow-up-right" aria-hidden="true"></i>
+          </a>
+          <a
+            href="https://travelookapp.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>04</span
+            ><span>Travelook · foto suasana jalan Kota Malang</span
+            ><i class="ph ph-arrow-up-right" aria-hidden="true"></i>
+          </a>
+        </div>
+        <p class="source-footnote">
+          Statistik wilayah dan jumlah perguruan tinggi mengikuti profil
+          Pemerintah Kota Malang yang dirujuk saat halaman ini disusun.
+        </p>
+      </section>
+    </main>
+
+    <!-- Footer global: tautan informasi, sosial, dan kontrol kembali ke atas. -->
+    <footer class="site-footer" id="informasi">
+      <div class="footer-grid">
+        <div>
+          <a
+            class="footer-wordmark"
+            href="#top"
+            aria-label="Pesona Malang, kembali ke atas"
+          >
+            <img
+              src="/it-incubation-project/aset/Logo/logo.png"
+              alt="Logo Pesona Malang"
+              loading="lazy"
+              decoding="async"
+            />
+          </a>
+          <p class="footer-note">
+            Catatan kecil untuk perjalanan besar di Malang Raya, Jawa Timur.
+          </p>
+        </div>
+        <nav aria-labelledby="footer-web-title">
+          <h2 class="footer-title" id="footer-web-title">Situs web kami</h2>
+          <ul class="footer-list">
+            <li><a href="/it-incubation-project/destinasi.html">Destinasi</a></li>
+            <li><a href="/it-incubation-project/tiket.html#panduan">Panduan kunjungan</a></li>
+            <li><a href="/it-incubation-project/tentang.html">Tentang Kota Malang</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="footer-info-title">
+          <h2 class="footer-title" id="footer-info-title">Informasi</h2>
+          <ul class="footer-list">
+            <li><a href="/it-incubation-project/destinasi.html">Destinasi</a></li>
+            <li><a href="/it-incubation-project/tiket.html">Tiket</a></li>
+            <li><a href="/it-incubation-project/tentang.html" aria-current="page">Tentang</a></li>
+            <li><a href="/it-incubation-project/review.html">Review</a></li>
+          </ul>
+        </nav>
+        <div>
+          <h2 class="footer-title">Kelompok 1</h2>
+          <ul class="social-list">
+            <li><a>Sheila</a></li>
+            <li><a>Zhorif</a></li>
+            <li><a>Raissa</a></li>
+            <li><a>Zaky</a></li>
+            <li><a>Zakiyya</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Pesona Malang</span>
+        <span>Informasi wisata · Bukan layanan pemesanan tiket</span>
+      </div>
+    </footer>
+
+    <a
+      class="back-to-top"
+      id="back-to-top"
+      href="#top"
+      aria-label="Kembali ke atas"
+      aria-hidden="true"
+      tabindex="-1"
+    >
+      <i class="ph ph-arrow-up" aria-hidden="true"></i>
+    </a>
+  </body>
+</html>

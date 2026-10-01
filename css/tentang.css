@@ -1,0 +1,15 @@
+/* Komponen lokal tentang: hero dan variasi visual kartu cerita Kota Malang. */
+.hero-image {
+  object-position: center 47%;
+}
+.about-grid .destination-card:first-child .card-visual img {
+  object-position: center 55%;
+}
+.about-grid .destination-card:nth-child(2) .card-visual img {
+  object-position: center 51%;
+}
+@media (max-width: 600px) {
+  .hero-image {
+    object-position: 57% center;
+  }
+}

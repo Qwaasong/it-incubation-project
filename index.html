@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
@@ -12,6 +12,23 @@
       content="Temukan keelokan alam dan wisata rekreasi di Malang Raya, Jawa Timur."
     />
 
+    <script>
+      (() => {
+        let saved = null;
+        try {
+          saved = localStorage.getItem("pesona-malang-theme");
+        } catch (error) {
+          saved = null;
+        }
+        if (saved !== "light" && saved !== "dark") {
+          saved = window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
+        }
+        document.documentElement.dataset.theme = saved;
+      })();
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
@@ -20,23 +37,38 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css" />
-    <link rel="stylesheet" href="css/global.css" />
-    <link rel="stylesheet" href="css/site.css" />
-    <link rel="stylesheet" href="css/beranda.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css"
+    />
+    <link rel="icon" href="/it-incubation-project/aset/favicon.ico" sizes="any" />
+    <link rel="icon" href="/it-incubation-project/aset/favicon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="/it-incubation-project/aset/apple-touch-icon.png" />
+    <!-- Aset global dimuat lebih dahulu; CSS berikut hanya untuk halaman ini. -->
+    <link rel="stylesheet" href="/it-incubation-project/css/global.css" />
+    <link rel="stylesheet" href="/it-incubation-project/css/site.css" />
+    <link rel="stylesheet" href="/it-incubation-project/css/beranda.css" />
 
     <script src="/it-incubation-project/js/site.js" defer></script>
   </head>
 
   <body>
-    <!-- NAVBAR -->
     <a class="skip-link" href="#main">Lewati ke konten utama</a>
 
+    <!-- Navbar global: identitas, tautan halaman, tema, menu mobile, dan pencarian. -->
     <header class="site-header" id="top">
       <div class="nav-wrap">
-        <a class="brand" href="/it-incubation-project/index.html" aria-label="Kunjungi Malang, beranda">
+        <a
+          class="brand"
+          href="/it-incubation-project/index.html"
+          aria-label="Kunjungi Malang, beranda"
+        >
           <span class="brand-mark" aria-hidden="true">
-            <img class="brand-logo-inverse" src="/it-incubation-project/aset/Logo/logo-inverse.png" alt="" />
+            <img
+              class="brand-logo-inverse"
+              src="/it-incubation-project/aset/Logo/logo-inverse.png"
+              alt=""
+            />
             <img class="brand-logo" src="/it-incubation-project/aset/Logo/logo.png" alt="" />
           </span>
           <span class="brand-name">Eksplore Malang Yuk</span>
@@ -45,7 +77,7 @@
         <nav class="primary-nav" id="primary-nav" aria-label="Navigasi utama">
           <a href="/it-incubation-project/destinasi.html">Destinasi</a>
           <a href="/it-incubation-project/tiket.html">Tiket</a>
-          <a href="/it-incubation-project/beranda.html#about">Tentang</a>
+          <a href="/it-incubation-project/tentang.html">Tentang</a>
           <a href="/it-incubation-project/review.html">Review</a>
         </nav>
 
@@ -54,11 +86,30 @@
             class="search-toggle"
             id="search-toggle"
             type="button"
-            aria-label="Cari destinasi"
+            aria-label="Sorot destinasi di halaman ini"
             aria-expanded="false"
             aria-controls="site-search"
           >
             <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
+          </button>
+
+          <button
+            class="theme-toggle"
+            id="theme-toggle"
+            type="button"
+            aria-label="Ganti tema"
+            aria-pressed="false"
+          >
+            <i
+              class="ph ph-moon"
+              data-theme-icon="moon"
+              aria-hidden="true"
+            ></i>
+            <i
+              class="ph ph-sun"
+              data-theme-icon="sun"
+              aria-hidden="true"
+            ></i>
           </button>
         </div>
 
@@ -73,9 +124,10 @@
         </button>
       </div>
 
+      <!-- Panel pencarian global: difilter oleh js/site.js dan menyoroti hasil di kartu. -->
       <div class="nav-search" id="site-search" hidden>
         <form class="search-form" id="search-form" role="search">
-          <label class="search-label" for="search-input">Cari destinasi</label>
+          <label class="search-label" for="search-input">Sorot Destinasi</label>
           <div class="search-field">
             <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
             <input
@@ -84,308 +136,288 @@
               type="search"
               name="q"
               autocomplete="off"
-              placeholder="Cari nama, lokasi, atau atraksi"
+              placeholder="Ketik nama, lokasi, atau atraksi"
             />
             <button
               class="search-clear"
               id="search-clear"
               type="button"
-              aria-label="Bersihkan pencarian"
+              aria-label="Hapus kata kunci"
               hidden
             >
               <i class="ph ph-x" aria-hidden="true"></i>
             </button>
           </div>
-          <p class="search-status" id="search-status" role="status" aria-live="polite"></p>
+          <p
+            class="search-status"
+            id="search-status"
+            role="status"
+            aria-live="polite"
+          ></p>
         </form>
       </div>
     </header>
 
     <main id="main">
+      <!-- HERO SECTION -->
+      <section class="hero" id="home">
+        <div
+          class="hero-slide active"
+          style="
+            background-image: url(/it-incubation-project/aset/img/bromo.webp);
+            background-size: cover;
+            background-position: center;
+          "
+        ></div>
 
-    <!-- HERO SECTION -->
-    <section class="hero" id="home">
-      <div
-        class="hero-slide active"
-        style="
-          background-image: url(/it-incubation-project/aset/img/bromo.webp);
-          background-size: cover;
-          background-position: center;
-        "
-      ></div>
+        <div
+          class="hero-slide hero-slide-video"
+          style="background-image: url(/it-incubation-project/aset/img/gunungbromo.png.jpg)"
+        >
+          <video
+            class="hero-video"
+            id="heroVideo"
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            aria-hidden="true"
+            tabindex="-1"
+          >
+            <source src="/it-incubation-project/aset/video/bromo-1080p.mp4" type="video/mp4" />
+          </video>
+        </div>
 
-      <div
-        class="hero-slide"
-        style="
-          background-image: url(&quot;https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2000&q=85&quot;);
-        "
-      ></div>
+        <div
+          class="hero-slide"
+          style="background-image: url(/it-incubation-project/aset/img/coban-rondo.webp)"
+        ></div>
 
-      <div
-        class="hero-slide"
-        style="
-          background-image: url(&quot;https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=2000&q=85&quot;);
-        "
-      ></div>
+        <div
+          class="hero-slide"
+          style="background-image: url(/it-incubation-project/aset/img/jatim-park-2.webp)"
+        ></div>
 
-      <div class="hero-overlay"></div>
+        <div class="hero-overlay"></div>
 
-      <div class="hero-content">
-        <span class="hero-label">✦ YOUR JOURNEY STARTS HERE</span>
+        <div class="hero-content">
+          <span class="hero-label">✦ YOUR JOURNEY STARTS HERE</span>
 
-        <h1 id="heroTitle">
-          Explore the Beauty<br />
-          of <span>Malang.</span>
-        </h1>
+          <h1 id="heroTitle">
+            Jelajahi Keindahan<br />
+            dari <span>Malang.</span>
+          </h1>
 
-        <p id="heroDescription">
-          Temukan keindahan alam, destinasi tersembunyi, dan pengalaman
-          perjalanan tak terlupakan di Malang.
+          <p id="heroDescription">
+            Temukan keindahan alam, destinasi tersembunyi, dan pengalaman
+            perjalanan tak terlupakan di Malang.
+          </p>
+
+          <div class="hero-buttons">
+            <a href="#destinasi" class="btn-primary">
+              Jelajahi Sekarang <span>→</span>
+            </a>
+
+            <a href="#about" class="btn-outline"> Tentang Kami </a>
+          </div>
+        </div>
+
+        <div class="hero-bottom">
+          <div class="hero-indicators">
+            <button class="indicator active" data-slide="0"></button>
+            <button class="indicator" data-slide="1"></button>
+            <button class="indicator" data-slide="2"></button>
+            <button class="indicator" data-slide="3"></button>
+          </div>
+
+          <span class="hero-counter" id="heroCounter">01 / 04</span>
+        </div>
+
+        <div class="scroll-down">
+          <span>SCROLL TO EXPLORE</span>
+          <div class="scroll-line"></div>
+        </div>
+      </section>
+
+      <!-- DESTINATION SECTION -->
+      <section class="destination-section" id="destinasi">
+        <div class="section-heading reveal">
+          <span class="section-label">DISCOVER MALANG</span>
+          <h2>Destinasi <span>Populer</span></h2>
+          <p>
+            Temukan tempat-tempat menakjubkan yang wajib masuk wishlist
+            liburanmu.
+          </p>
+        </div>
+
+        <div class="destination-grid" id="destinationGrid">
+          <article
+            class="destination-card reveal"
+            data-name="bromo"
+            data-category="alam"
+          >
+            <div class="destination-image">
+              <img src="/it-incubation-project/aset/img/bromo.webp" alt="Pemandangan pegunungan" />
+
+              <span class="destination-tag">POPULAR</span>
+            </div>
+
+            <div class="destination-info">
+              <span class="location">⌖ Jawa Timur</span>
+              <h3>Gunung Bromo</h3>
+              <p>
+                Nikmati keindahan sunrise dan panorama pegunungan yang memukau.
+              </p>
+              <a href="#contact" class="detail-link">Explore More →</a>
+            </div>
+          </article>
+
+          <article
+            class="destination-card reveal"
+            data-name="Air Terjun Coban Rondo"
+            data-category="alam"
+          >
+            <div class="destination-image">
+              <img src="/it-incubation-project/aset/img/coban-rondo.webp" alt="Air terjun" />
+
+              <span class="destination-tag">NATURE</span>
+            </div>
+
+            <div class="destination-info">
+              <span class="location">⌖ Lumajang</span>
+              <h3>Air Terjun Coban Rondo</h3>
+              <p>Pesona air terjun megah yang dikelilingi alam hijau.</p>
+              <a href="#contact" class="detail-link">Explore More →</a>
+            </div>
+          </article>
+
+          <article
+            class="destination-card reveal"
+            data-name="Jatim Park 2"
+            data-category="pantai"
+          >
+            <div class="destination-image">
+              <img src="/it-incubation-project/aset/img/jatim-park-2.webp" alt="Pantai tropis" />
+
+              <span class="destination-tag">FAMILY</span>
+            </div>
+
+            <div class="destination-info">
+              <span class="location">⌖ Malang Selatan</span>
+              <h3>Jatim Park 2</h3>
+              <p>Tempat rekreasi keluarga dengan berbagai fasilitas menarik.</p>
+              <a href="#contact" class="detail-link">Explore More →</a>
+            </div>
+          </article>
+
+          <article
+            class="destination-card reveal"
+            data-name="Museum Angkut"
+            data-category="keluarga"
+          >
+            <div class="destination-image">
+              <img src="/it-incubation-project/aset/img/museum-angkut.webp" alt="Tempat rekreasi" />
+
+              <span class="destination-tag">FAMILY</span>
+            </div>
+
+            <div class="destination-info">
+              <span class="location">⌖ Kota Batu</span>
+              <h3>Museum Angkut</h3>
+              <p>
+                Jelajahi sejarah transportasi dan nikmati pengalaman edukatif.
+              </p>
+              <a href="#contact" class="detail-link">Explore More →</a>
+            </div>
+          </article>
+        </div>
+
+        <p class="no-result" id="noResult" hidden>
+          Destinasi tidak ditemukan. Coba kata kunci lain.
         </p>
 
-        <div class="hero-buttons">
-          <a href="#destinasi" class="btn-primary">
-            Jelajahi Sekarang <span>→</span>
-          </a>
-
-          <a href="#about" class="btn-outline"> Tentang Kami </a>
+        <div class="center-button">
+          <a href="#destinasi" class="btn-secondary">Lihat Semua Destinasi →</a>
         </div>
-      </div>
+      </section>
 
-      <div class="hero-bottom">
-        <div class="hero-indicators">
-          <button class="indicator active" data-slide="0"></button>
-          <button class="indicator" data-slide="1"></button>
-          <button class="indicator" data-slide="2"></button>
-        </div>
+      <!-- ABOUT / WHY US -->
+      <section class="about-section" id="about">
+        <div class="about-image reveal">
+          <img src="/it-incubation-project/aset/img/tugu-malang.jpg" alt="Pemandangan alam" />
 
-        <span class="hero-counter" id="heroCounter">01 / 03</span>
-      </div>
-
-      <div class="scroll-down">
-        <span>SCROLL TO EXPLORE</span>
-        <div class="scroll-line"></div>
-      </div>
-    </section>
-
-    <!-- SEARCH SECTION -->
-    <section class="search-section">
-      <div class="search-box">
-        <div class="search-info">
-          <span class="search-icon">⌕</span>
-          <div>
-            <label>Cari Destinasi</label>
-            <input
-              type="text"
-              id="searchInput"
-              placeholder="Mau liburan ke mana?"
-            />
+          <div class="floating-card">
+            <span>✦</span>
+            <div>
+              <strong>Explore More</strong>
+              <small>Experience More</small>
+            </div>
           </div>
         </div>
 
-        <div class="search-info">
-          <span class="search-icon">⌖</span>
-          <div>
-            <label>Kategori Wisata</label>
-            <select id="categorySelect">
-              <option value="all">Semua Kategori</option>
-              <option value="alam">Wisata Alam</option>
-              <option value="pantai">Pantai</option>
-              <option value="keluarga">Wisata Keluarga</option>
-            </select>
+        <div class="about-content reveal">
+          <h2>Perjalanan Hebat<br />Dimulai dari <span>Sini.</span></h2>
+
+          <p>
+            ExploreMalangYuk hadir sebagai teman perjalananmu untuk menemukan
+            berbagai destinasi wisata menarik, mulai dari keindahan alam hingga
+            tempat rekreasi.
+          </p>
+
+          <div class="feature">
+            <span>✓</span>
+            <div>
+              <h4>Informasi Destinasi</h4>
+              <p>Temukan informasi wisata dengan mudah.</p>
+            </div>
+          </div>
+
+          <div class="feature">
+            <span>✓</span>
+            <div>
+              <h4>Inspirasi Perjalanan</h4>
+              <p>Temukan ide liburan sesuai keinginanmu.</p>
+            </div>
+          </div>
+
+          <div class="feature">
+            <span>✓</span>
+            <div>
+              <h4>Explore More Experiences</h4>
+              <p>Jadikan setiap perjalanan lebih berkesan.</p>
+            </div>
           </div>
         </div>
+      </section>
 
-        <button class="search-button" id="searchButton">Search →</button>
-      </div>
-    </section>
-
-    <!-- DESTINATION SECTION -->
-    <section class="destination-section" id="destinasi">
-      <div class="section-heading reveal">
-        <span class="section-label">DISCOVER MALANG</span>
-        <h2>Destinasi <span>Populer</span></h2>
-        <p>
-          Temukan tempat-tempat menakjubkan yang wajib masuk wishlist liburanmu.
-        </p>
-      </div>
-
-      <div class="destination-grid" id="destinationGrid">
-        <article
-          class="destination-card reveal"
-          data-name="bromo"
-          data-category="alam"
-        >
-          <div class="destination-image">
-            <img
-              src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=900&q=85"
-              alt="Pemandangan pegunungan"
-            />
-
-            <span class="destination-tag">POPULAR</span>
-          </div>
-
-          <div class="destination-info">
-            <span class="location">⌖ Jawa Timur</span>
-            <h3>Gunung Bromo</h3>
-            <p>
-              Nikmati keindahan sunrise dan panorama pegunungan yang memukau.
-            </p>
-            <a href="#contact" class="detail-link">Explore More →</a>
-          </div>
-        </article>
-
-        <article
-          class="destination-card reveal"
-          data-name="tumpak sewu"
-          data-category="alam"
-        >
-          <div class="destination-image">
-            <img
-              src="https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&w=900&q=85"
-              alt="Air terjun"
-            />
-
-            <span class="destination-tag">NATURE</span>
-          </div>
-
-          <div class="destination-info">
-            <span class="location">⌖ Lumajang</span>
-            <h3>Tumpak Sewu</h3>
-            <p>Pesona air terjun megah yang dikelilingi alam hijau.</p>
-            <a href="#contact" class="detail-link">Explore More →</a>
-          </div>
-        </article>
-
-        <article
-          class="destination-card reveal"
-          data-name="pantai balekambang"
-          data-category="pantai"
-        >
-          <div class="destination-image">
-            <img
-              src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=85"
-              alt="Pantai tropis"
-            />
-
-            <span class="destination-tag">BEACH</span>
-          </div>
-
-          <div class="destination-info">
-            <span class="location">⌖ Malang Selatan</span>
-            <h3>Pantai Balekambang</h3>
-            <p>Hamparan pasir dan laut biru untuk menikmati suasana liburan.</p>
-            <a href="#contact" class="detail-link">Explore More →</a>
-          </div>
-        </article>
-
-        <article
-          class="destination-card reveal"
-          data-name="jatim park"
-          data-category="keluarga"
-        >
-          <div class="destination-image">
-            <img
-              src="https://images.unsplash.com/photo-1513883049090-d0b7439799bf?auto=format&fit=crop&w=900&q=85"
-              alt="Tempat rekreasi"
-            />
-
-            <span class="destination-tag">FAMILY</span>
-          </div>
-
-          <div class="destination-info">
-            <span class="location">⌖ Kota Batu</span>
-            <h3>Jatim Park</h3>
-            <p>
-              Wisata edukasi dan hiburan untuk pengalaman seru bersama keluarga.
-            </p>
-            <a href="#contact" class="detail-link">Explore More →</a>
-          </div>
-        </article>
-      </div>
-
-      <p class="no-result" id="noResult" hidden>
-        Destinasi tidak ditemukan. Coba kata kunci lain.
-      </p>
-
-      <div class="center-button">
-        <a href="#destinasi" class="btn-secondary">Lihat Semua Destinasi →</a>
-      </div>
-    </section>
-
-    <!-- ABOUT / WHY US -->
-    <section class="about-section" id="about">
-      <div class="about-image reveal">
-        <img
-          src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1100&q=85"
-          alt="Pemandangan alam"
-        />
-
-        <div class="floating-card">
-          <span>✦</span>
-          <div>
-            <strong>Explore More</strong>
-            <small>Experience More</small>
-          </div>
+      <!-- CTA -->
+      <section class="cta-section" id="contact">
+        <div class="cta-content reveal">
+          <span>READY FOR YOUR NEXT ADVENTURE?</span>
+          <h2>Let's Explore Malang Together!</h2>
+          <p>Petualangan baru menantimu. Mulai perjalananmu sekarang.</p>
+          <a href="#destinasi" class="btn-light">Mulai Jelajah →</a>
         </div>
-      </div>
-
-      <div class="about-content reveal">
-        <span class="section-label">WHY EXPLOREMALANGYUK?</span>
-
-        <h2>Perjalanan Hebat<br />Dimulai dari <span>Sini.</span></h2>
-
-        <p>
-          ExploreMalangYuk hadir sebagai teman perjalananmu untuk menemukan
-          berbagai destinasi wisata menarik, mulai dari keindahan alam hingga
-          tempat rekreasi.
-        </p>
-
-        <div class="feature">
-          <span>✓</span>
-          <div>
-            <h4>Informasi Destinasi</h4>
-            <p>Temukan informasi wisata dengan mudah.</p>
-          </div>
-        </div>
-
-        <div class="feature">
-          <span>✓</span>
-          <div>
-            <h4>Inspirasi Perjalanan</h4>
-            <p>Temukan ide liburan sesuai keinginanmu.</p>
-          </div>
-        </div>
-
-        <div class="feature">
-          <span>✓</span>
-          <div>
-            <h4>Explore More Experiences</h4>
-            <p>Jadikan setiap perjalanan lebih berkesan.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="cta-section" id="contact">
-      <div class="cta-content reveal">
-        <span>READY FOR YOUR NEXT ADVENTURE?</span>
-        <h2>Let's Explore Malang Together!</h2>
-        <p>Petualangan baru menantimu. Mulai perjalananmu sekarang.</p>
-        <a href="#destinasi" class="btn-light">Mulai Jelajah →</a>
-      </div>
-    </section>
-
+      </section>
     </main>
 
     <!-- FOOTER -->
+    <!-- Footer global: tautan informasi, sosial, dan kontrol kembali ke atas. -->
     <footer class="site-footer" id="informasi">
       <div class="footer-grid">
         <div>
-<a class="footer-wordmark" href="#top" aria-label="Pesona Malang, kembali ke atas">
-              <img src="/it-incubation-project/aset/Logo/logo.png" alt="Logo Pesona Malang" loading="lazy" decoding="async">
-            </a>
+          <a
+            class="footer-wordmark"
+            href="#top"
+            aria-label="Pesona Malang, kembali ke atas"
+          >
+            <img
+              src="/it-incubation-project/aset/Logo/logo.png"
+              alt="Logo Pesona Malang"
+              loading="lazy"
+              decoding="async"
+            />
+          </a>
           <p class="footer-note">
             Catatan kecil untuk perjalanan besar di Malang Raya, Jawa Timur.
           </p>
@@ -394,9 +426,8 @@
         <nav aria-labelledby="footer-web-title">
           <h2 class="footer-title" id="footer-web-title">Situs web kami</h2>
           <ul class="footer-list">
-            <li><a href="/it-incubation-project/destinasi.html">Destinasi &amp; harga tiket</a></li>
-            <li><a href="/it-incubation-project/tiket.html#panduan">Panduan kunjungan</a></li>
-            <li><a href="/it-incubation-project/beranda.html#about">Tentang Malang Raya</a></li>
+            <li><a href="/it-incubation-project/destinasi.html">Destinasi</a></li>
+            <li><a href="/it-incubation-project/tentang.html">Tentang Malang Raya</a></li>
           </ul>
         </nav>
 
@@ -405,7 +436,7 @@
           <ul class="footer-list">
             <li><a href="/it-incubation-project/destinasi.html">Destinasi</a></li>
             <li><a href="/it-incubation-project/tiket.html">Tiket</a></li>
-            <li><a href="/it-incubation-project/beranda.html#about">Tentang</a></li>
+            <li><a href="/it-incubation-project/tentang.html">Tentang</a></li>
             <li><a href="/it-incubation-project/review.html">Review</a></li>
           </ul>
         </nav>
@@ -425,7 +456,6 @@
       <div class="footer-bottom">
         <span>© 2026 Pesona Malang</span>
         <span>Informasi wisata · Bukan layanan pemesanan tiket</span>
-        <a class="back-top" href="#top">Kembali ke atas <i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
       </div>
     </footer>
 
@@ -440,11 +470,6 @@
       <i class="ph ph-arrow-up" aria-hidden="true"></i>
     </a>
 
-    <!--Tema-->
-    <button id="themeToggle" class="theme-toggle" type="button" aria-label="Ganti tema terang dan gelap">
-      <i class="ph ph-moon" aria-hidden="true"></i>
-    </button>
-
-    <script src="js/beranda.js"></script>
+    <script src="/it-incubation-project/js/beranda.js"></script>
   </body>
 </html>
